@@ -52,7 +52,7 @@ jobs:
           git config --local user.name "${{ github.actor }}"
           git config --local user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
           git add --all
-          git commit -m "Update generated code"
+          git commit -m "Update generated proto to v${{ steps.create_tag.outputs.TARGET_VERSION }}"
           git tag ${{ steps.create_tag.outputs.TARGET_VERSION }}
           git push https://github.com/cnc-csku/task-nexus-proto-go.git HEAD:main --tags
 
