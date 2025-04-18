@@ -14,5 +14,6 @@ message AuthenticateUserRequest {
 message AuthenticateUserResponse {
   bool success = 1;
   string message = 2;
-  string token = 3; // JWT token for authenticated user
+  string token = 3;
+  string refresh_token = 4;
 }
