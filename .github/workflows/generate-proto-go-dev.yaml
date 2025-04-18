@@ -42,7 +42,7 @@ jobs:
           MINOR=$((${{ vars.MAIN_MINOR_VERSION }} + 1))
           PATCH=0
 
-          gh variable set $MINOR --body $MINOR
+          gh variable set MAIN_MINOR_VERSION --body $MINOR
 
           echo "TARGET_VERSION=$TARGET_VERSION" >> $GITHUB_ENV
 
