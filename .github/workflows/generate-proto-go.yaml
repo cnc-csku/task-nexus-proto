@@ -13,5 +13,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: cnc-csku/task-nexus-proto-go
-          ref: 'main'
+          ref: main
           path: task-nexus-proto-go
+
+      - name: "Build protos"
+        uses: bufbuild/buf-action@v1
+
+      
