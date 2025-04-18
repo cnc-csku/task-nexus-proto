@@ -2,7 +2,7 @@ name: "Generate go protos"
 on:
   push:
     branches:
-      - feature/*
+      - main
 env:
   GO_VERSION: 1.23
 jobs:
@@ -11,6 +11,8 @@ jobs:
       id-token: write
       contents: read
     runs-on: ubuntu-latest
+    env:
+      TARGET_VERSION: v0.0.0
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,6 +30,15 @@ jobs:
           cd task-nexus-proto-go
           buf generate
 
+      - name: Create version tag
+        id: create_tag
+        run: |
+          MAJOR=${{ vars.MAIN_MAJOR_VERSION }}
+          MINOR=$((${{ vars.MAIN_MINOR_VERSION }} + 1))
+          PATCH=0
+          gh variable set $MINOR --body
+          echo "TARGET_VERSION=$TARGET_VERSION" >> $GITHUB_ENV
+
       - name: Commit generated code
         run: |
           cd task-nexus-proto-go
@@ -35,5 +46,5 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add --all
           git commit -m "Update generated code"
-          git tag "v0.0.0"
+          git tag -v $TARGET_VERSION -m "Release $TARGET_VERSION"
           git push https://github.com/cnc-csku/task-nexus-proto-go.git HEAD:main --tags
