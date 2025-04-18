@@ -8,7 +8,7 @@ service AuthenticationService {
 
 message AuthenticateUserRequest {
   string username = 1;
-  string passwordd = 2;
+  string password = 2;
 }
 
 message AuthenticateUserResponse {
