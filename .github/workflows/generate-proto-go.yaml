@@ -15,6 +15,7 @@ jobs:
           repository: cnc-csku/task-nexus-proto-go
           ref: main
           path: task-nexus-proto-go
+          token: ${{ secrets.GH_PAT }}
 
       - name: Set buf cli
         uses: bufbuild/buf-setup-action@v1
