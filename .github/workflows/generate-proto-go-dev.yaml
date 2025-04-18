@@ -42,7 +42,7 @@ jobs:
 
           gh variable set MAIN_MINOR_VERSION --body $MINOR
           
-          echo "TARGET_VERSION=$v$MAJOR.$MINOR.$PATCH" >> $GITHUB_OUTPUT
+          echo "TARGET_VERSION=v$MAJOR.$MINOR.$PATCH" >> $GITHUB_OUTPUT
 
       - name: Commit generated code
         run: |
