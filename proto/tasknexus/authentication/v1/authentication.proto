@@ -8,11 +8,12 @@ service AuthenticationService {
 
 message AuthenticateUserRequest {
   string username = 1;
-  string passwordd = 2;
+  string password = 2;
 }
 
 message AuthenticateUserResponse {
   bool success = 1;
   string message = 2;
-  string token = 3; // JWT token for authenticated user
+  string token = 3;
+  string refresh_token = 4;
 }
