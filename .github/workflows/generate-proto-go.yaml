@@ -23,3 +23,12 @@ jobs:
         run: |
           cd task-nexus-proto-go
           buf generate
+        
+      - name: Commit generated code
+        run: |
+          cd task-nexus-proto-go
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add --all
+          git commit -m "Update generated code"
+          git push github.com:cnc-csku/task-nexus-proto-go.git HEAD:main
