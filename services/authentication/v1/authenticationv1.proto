@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service AuthenticationService {
+  rpc AuthenticateUser (AuthenticateUserRequest) returns (AuthenticateUserResponse);
+}
+
+message AuthenticateUserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthenticateUserResponse {
+  bool success = 1;
+  string message = 2;
+  string token = 3; // JWT token for authenticated user
+}
