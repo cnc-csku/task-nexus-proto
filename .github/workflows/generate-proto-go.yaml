@@ -16,7 +16,10 @@ jobs:
           ref: main
           path: task-nexus-proto-go
 
-      - name: "Build protos"
-        uses: bufbuild/buf-action@v1
-        with:
-          paths: task-nexus-proto-go
+      - name: Set buf cli
+        uses: bufbuild/buf-setup-action@v1
+
+      - name: Build protos
+        run: |
+          cd task-nexus-proto-go
+          buf generate
