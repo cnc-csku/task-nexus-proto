@@ -1,0 +1,16 @@
+name: Lint Protobuffer
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: run protolint
+        uses: plexsystems/protolint-action@v0.7.0
+        with:
+          configDirectory: test

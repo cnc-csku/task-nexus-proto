@@ -1,0 +1,24 @@
+# .protolint.yaml
+rules:
+  add:
+    - ENUM_FIELD_NAMES_PREFIX
+    - ENUM_FIELD_NAMES_UPPER_SNAKE_CASE
+    - ENUM_NAMES_UPPER_CAMEL_CASE
+    - FIELD_NAMES_LOWER_SNAKE_CASE
+    - MESSAGE_FIELD_NAMES_LOWER_SNAKE_CASE
+    - MESSAGE_NAMES_UPPER_CAMEL_CASE
+    - RPC_NAMES_UPPER_CAMEL_CASE
+    - SERVICE_NAMES_UPPER_CAMEL_CASE
+    - PACKAGE_LOWER_SNAKE_CASE
+    - IMPORT_NO_PUBLIC
+    - SYNTAX_PROTO3
+  remove:
+    - FILE_NAME_LOWER_SNAKE_CASE 
+    - PACKAGE_DIRECTORY_MATCH 
+  ignore:
+    - path/to/ignored/file.proto
+    - path/to/ignored/directory/**
+
+exclude_paths:
+  - third_party/**
+  - vendor/**
