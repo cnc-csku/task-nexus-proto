@@ -32,6 +32,8 @@ jobs:
 
       - name: Create version tag
         id: create_tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}`
         run: |
           MAJOR=${{ vars.MAIN_MAJOR_VERSION }}
           MINOR=$((${{ vars.MAIN_MINOR_VERSION }} + 1))
