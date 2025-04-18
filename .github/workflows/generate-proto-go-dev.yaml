@@ -32,7 +32,7 @@ jobs:
       - name: Build protos
         run: |
           cd task-nexus-proto-go
-          buf generate
+          buf generate --template buf.gen.dev.yaml
 
       - name: Create version tag
         id: create_tag
