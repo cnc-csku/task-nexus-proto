@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package tasknexus.authentication.v1;
+
 service AuthenticationService {
   rpc AuthenticateUser (AuthenticateUserRequest) returns (AuthenticateUserResponse);
 }
