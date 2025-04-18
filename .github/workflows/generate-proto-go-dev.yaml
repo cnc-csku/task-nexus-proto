@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Checkout proto-go repo
         uses: actions/checkout@v4
         with:
@@ -41,6 +41,7 @@ jobs:
           MAJOR=${{ vars.MAIN_MAJOR_VERSION }}
           MINOR=$((${{ vars.MAIN_MINOR_VERSION }} + 1))
           PATCH=0
+          gh auth login --with-token < $GITHUB_TOKEN
           gh variable set $MINOR --body "$MINOR"
           echo "TARGET_VERSION=$TARGET_VERSION" >> $GITHUB_ENV
 
