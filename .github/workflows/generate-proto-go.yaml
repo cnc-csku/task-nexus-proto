@@ -61,5 +61,5 @@ jobs:
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
-          git tag $TARGET_VERSION
+          git tag ${{ steps.create_tag.outputs.TARGET_VERSION }}
           git push --tags
