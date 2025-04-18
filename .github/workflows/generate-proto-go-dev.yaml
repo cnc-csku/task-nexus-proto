@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        
+      - name: Checkout proto-go repo
+        uses: actions/checkout@v4
         with:
           repository: cnc-csku/task-nexus-proto-go
           ref: main
