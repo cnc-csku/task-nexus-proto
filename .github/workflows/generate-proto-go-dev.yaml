@@ -29,7 +29,7 @@ jobs:
       - name: Build protos
         run: |
           cd task-nexus-proto-go
-          buf generate 
+          buf generate
 
       - name: Create version tag
         id: create_tag
@@ -53,3 +53,11 @@ jobs:
           git commit -m "Update generated code"
           git tag ${{ steps.create_tag.outputs.TARGET_VERSION }}
           git push https://github.com/cnc-csku/task-nexus-proto-go.git HEAD:main --tags
+
+      - name: Tag version
+        id: tag_version
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git tag $TARGET_VERSION
+          git push --tags
