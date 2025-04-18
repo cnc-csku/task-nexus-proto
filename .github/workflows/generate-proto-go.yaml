@@ -7,6 +7,9 @@ env:
   GO_VERSION: 1.23
 jobs:
   generate:
+    permissions:
+      id-token: write
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,7 +27,7 @@ jobs:
         run: |
           cd task-nexus-proto-go
           buf generate
-        
+
       - name: Commit generated code
         run: |
           cd task-nexus-proto-go
