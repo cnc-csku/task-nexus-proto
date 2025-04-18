@@ -36,13 +36,14 @@ jobs:
       - name: Create version tag
         id: create_tag
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           MAJOR=${{ vars.MAIN_MAJOR_VERSION }}
           MINOR=$((${{ vars.MAIN_MINOR_VERSION }} + 1))
           PATCH=0
-          gh auth login --with-token < $GITHUB_TOKEN
+
           gh variable set $MINOR --body "$MINOR"
+          
           echo "TARGET_VERSION=$TARGET_VERSION" >> $GITHUB_ENV
 
       - name: Commit generated code
