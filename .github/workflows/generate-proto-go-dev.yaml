@@ -1,8 +1,8 @@
-name: "Generate go protos"
+name: "Generate go protos dev"
 on:
   push:
     branches:
-      - main
+      - dev
 env:
   GO_VERSION: 1.23
 jobs:
@@ -15,13 +15,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_PAT }}\
+          ref: dev
 
       - name: Checkout proto-go repo
         uses: actions/checkout@v4
         with:
           repository: cnc-csku/task-nexus-proto-go
-          ref: main
+          ref: dev
           path: task-nexus-proto-go
           token: ${{ secrets.GH_PAT }}
 
@@ -39,22 +40,20 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           MAJOR=${{ vars.MAIN_MAJOR_VERSION }}
-          MINOR=$((${{ vars.MAIN_MINOR_VERSION }} + 1))
+          MINOR=${{ vars.MAIN_MINOR_VERSION }}
           PATCH=0
-
-          gh variable set MAIN_MINOR_VERSION --body $MINOR
-          gh variable set DEV_VERSION --body 0
+          DEV_VERSION=$((${{ vars.DEV_VERSION }} + 1))
+          gh variable set DEV_VERSION --body $DEV_VERSION
           
-          echo "TARGET_VERSION=v$MAJOR.$MINOR.$PATCH" >> $GITHUB_OUTPUT
+          echo "TARGET_VERSION=v$MAJOR.$MINOR.$PATCH.dev$DEV_VERSION" >> $GITHUB_OUTPUT
 
       - name: Commit generated code
         run: |
           cd task-nexus-proto-go
           git config --local user.name "${{ github.actor }}"
           git config --local user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
-          git pull origin main
           git add --all
-          git commit -m "Update generated proto to ${{ steps.create_tag.outputs.TARGET_VERSION }}"
+          git commit -m "Update generated dev proto to ${{ steps.create_tag.outputs.TARGET_VERSION }}"
           git tag ${{ steps.create_tag.outputs.TARGET_VERSION }}
           git push https://github.com/cnc-csku/task-nexus-proto-go.git HEAD:main --tags
 
