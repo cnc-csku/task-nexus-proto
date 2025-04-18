@@ -35,4 +35,4 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add --all
           git commit -m "Update generated code"
-          git push github.com:cnc-csku/task-nexus-proto-go.git HEAD:main
+          git push https://github.com:cnc-csku/task-nexus-proto-go.git HEAD:main
