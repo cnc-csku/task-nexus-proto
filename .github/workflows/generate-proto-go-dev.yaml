@@ -45,7 +45,7 @@ jobs:
           DEV_VERSION=$((${{ vars.DEV_VERSION }} + 1))
           gh variable set DEV_VERSION --body $DEV_VERSION
           
-          echo "TARGET_VERSION=v$MAJOR.$MINOR.$PATCH.dev$DEV_VERSION" >> $GITHUB_OUTPUT
+          echo "TARGET_VERSION=v$MAJOR.$MINOR.$PATCH-dev.$DEV_VERSION" >> $GITHUB_OUTPUT
 
       - name: Commit generated code
         run: |
