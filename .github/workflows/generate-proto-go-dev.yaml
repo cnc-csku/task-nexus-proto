@@ -56,7 +56,7 @@ jobs:
           git add --all
           git commit -m "Update generated dev proto to ${{ steps.create_tag.outputs.TARGET_VERSION }}"
           git tag ${{ steps.create_tag.outputs.TARGET_VERSION }}
-          git push https://github.com/cnc-csku/task-nexus-proto-go.git HEAD:main --tags
+          git push https://github.com/cnc-csku/task-nexus-proto-go.git HEAD:dev --tags
 
       - name: Tag version
         id: tag_version
