@@ -14,3 +14,4 @@ jobs:
         with:
           repository: cnc-csku/task-nexus-proto-go
           ref: 'main'
+          path: task-nexus-proto-go
