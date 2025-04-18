@@ -1,0 +1,17 @@
+name: Lint Protobuffer
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set buf cli
+        uses: bufbuild/buf-setup-action@v1
+
+      - name: Lint protos
+        uses: bufbuild/buf-lint-action@v1
