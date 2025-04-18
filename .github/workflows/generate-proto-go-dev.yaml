@@ -52,5 +52,5 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add --all
           git commit -m "Update generated code"
-          git tag -v ${{ steps.create_tag.outputs.TARGET_VERSION }} -m "Release v${{ steps.create_tag.outputs.TARGET_VERSION }}"
+          git tag ${{ steps.create_tag.outputs.TARGET_VERSION }}"
           git push https://github.com/cnc-csku/task-nexus-proto-go.git HEAD:main --tags
