@@ -18,5 +18,5 @@ jobs:
 
       - name: "Build protos"
         uses: bufbuild/buf-action@v1
-
-      
+        with:
+          paths: task-nexus-proto-go
